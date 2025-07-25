@@ -122,7 +122,6 @@
             filter: brightness(1.2);
         }
         
-        /* O botão de 0 na imagem original ocupa 1 espaço, mas 2 é mais comum. Voltando para o original. */
         .btn.btn-zero {
             grid-column: auto;
         }
@@ -144,7 +143,6 @@
             border-radius: 12px;
             padding: 1.5rem;
             width: 300px;
-            /* A altura mínima garante que o histórico não colapse se estiver vazio */
             min-height: 574px; 
         }
 
@@ -164,7 +162,7 @@
         }
         
         .history-header h2::before {
-            content: '🕒'; /* Ícone de relógio simples */
+            content: '🕒';
             font-size: 1rem;
         }
 
@@ -210,29 +208,25 @@
             color: var(--text-result);
         }
 
-        /* --- ✨ SEÇÃO RESPONSIVA ✨ --- */
-        /* Para tablets e celulares (telas com menos de 820px de largura) */
+
         @media (max-width: 820px) {
             body {
-                /* Alinha o conteúdo ao topo em telas menores */
                 align-items: flex-start; 
                 padding: 1rem;
             }
             .container {
-                /* Muda a direção do flex para empilhar os itens verticalmente */
                 flex-direction: column;
                 align-items: center;
                 gap: 2rem;
             }
             .calculator {
                 width: 100%;
-                /* Garante que a calculadora não fique excessivamente larga */
                 max-width: 400px; 
             }
             .history {
                 width: 100%;
                 max-width: 400px;
-                min-height: auto; /* Remove a altura mínima fixa */
+                min-height: auto;
             }
         }
 

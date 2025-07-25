@@ -75,8 +75,7 @@ def calculadora(request):
         except KeyError:
             contexto['erro'] = "Erro: Operador inválido."
 
-    # últimas 5 operações do usuário logado
     operacoes_recentes = Operacao.objects.filter(usuario=request.user)[:5]
     contexto['historico'] = operacoes_recentes
     
-    return render(request, 'core/index.html', contexto)
+    return render(request, 'home/index.html', contexto)
