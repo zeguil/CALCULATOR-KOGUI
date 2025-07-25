@@ -1,5 +1,5 @@
 
-# CALCULADORA KOGUI
+# CALCULADORA KOGUI 🧮
 
 
 #### O objetivo principal é oferecer uma calculadora que realiza as quatro operações matemáticas básicas (Soma, Subtração, Multiplicação e Divisão). Cada usuário precisa se registrar e fazer login para acessar a calculadora. Todas as operações realizadas são salvas e associadas ao perfil do usuário, que pode visualizar seu histórico de cálculos na página principal.
