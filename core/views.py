@@ -15,7 +15,7 @@ def registrar_usuario(request):
             return redirect('calculadora')
     else:
         form = UserCreationForm()
-    return render(request, 'registration/registrar.html', {'form': form})
+    return render(request, 'user/register.html', {'form': form})
 
 def login_usuario(request):
     """view para login do usuário."""
@@ -30,7 +30,7 @@ def login_usuario(request):
                 return redirect('calculadora')
     else:
         form = AuthenticationForm()
-    return render(request, 'registration/login.html', {'form': form})
+    return render(request, 'user/login.html', {'form': form})
 
 def logout_usuario(request):
     """view para logout."""
@@ -79,4 +79,4 @@ def calculadora(request):
     operacoes_recentes = Operacao.objects.filter(usuario=request.user)[:5]
     contexto['historico'] = operacoes_recentes
     
-    return render(request, 'core/calculadora.html', contexto)
+    return render(request, 'core/index.html', contexto)
