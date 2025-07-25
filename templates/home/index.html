@@ -2,23 +2,165 @@
 <html lang="pt-br">
 <head>
     <title>Calculadora</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; margin: 0; background-color: #f4f4f4; }
-        .header { background-color: #333; color: white; padding: 1rem; text-align: right; }
-        .header a { color: #ffc107; text-decoration: none; }
-        .container { display: flex; }
-        .main-content { flex: 3; padding: 2rem; }
-        .sidebar { flex: 1; padding: 2rem; background-color: #e9ecef; border-left: 1px solid #ddd; min-height: 80vh; }
-        .calculator-form input, .calculator-form select { padding: 0.5rem; margin-right: 0.5rem; }
-        .calculator-form button { padding: 0.5rem 1rem; }
-        .resultado { margin-top: 1rem; font-size: 1.5rem; font-weight: bold; }
-        .historico ul { list-style: none; padding: 0; }
-        .historico li { background: #fff; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 4px; }
+        :root {
+            --bg-color: #2D2A37;
+            --panel-bg: #1E192F;
+            --input-bg: #282532;
+            --text-color: #E1E1E6;
+            --text-secondary: #A0A0A0;
+            --accent-purple: #8A5DF7;
+            --accent-red: #B83D3D;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            width: 100%;
+            max-width: 800px;
+            box-sizing: border-box;
+            background-color: transparent;
+            color: var(--text-secondary);
+            padding: 1rem 2rem;
+            text-align: right;
+            font-size: 0.9rem;
+        }
+
+        .header a {
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .container {
+            display: flex;
+            gap: 2rem;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .main-content, .sidebar {
+            background-color: var(--panel-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+        }
+
+        .main-content {
+            flex: 3;
+        }
+
+        .sidebar {
+            flex: 2;
+        }
+
+        h2, h3 {
+            margin-top: 0;
+            border-bottom: 1px solid var(--input-bg);
+            padding-bottom: 0.8rem;
+            font-weight: 500;
+        }
+        .calculator-form {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .calculator-form input, .calculator-form select {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            border: 1px solid #4A4558;
+            border-radius: 6px;
+            padding: 0.8rem;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        /* Remove as setas padrão do input de número */
+        .calculator-form input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        .calculator-form input::-webkit-outer-spin-button,
+        .calculator-form input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .calculator-form select {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .calculator-form button {
+            background-color: var(--accent-purple);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: filter 0.2s;
+        }
+
+        .calculator-form button:hover {
+            filter: brightness(1.2);
+        }
+
+        .resultado {
+            margin-top: 2rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-align: center;
+            background: var(--input-bg);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .resultado.erro {
+            color: var(--accent-red);
+            font-size: 1rem;
+            background: #3c2a34;
+        }
+
+        .historico ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
+        .historico li {
+            background: var(--input-bg);
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.8rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <span>Olá, {{ user.username }}!</span> | <a href="{% url 'logout' %}">Sair</a>
+        <span>Olá, {{ user.username|title }}!</span> | <a href="{% url 'logout' %}">Sair</a>
     </div>
 
     <div class="container">
@@ -26,25 +168,25 @@
             <h2>Calculadora</h2>
             <form class="calculator-form" method="post">
                 {% csrf_token %}
-                <input type="number" name="num1" step="any" required>
+                <input type="number" name="num1" step="any" required placeholder="Número 1">
                 <select name="operador">
                     <option value="+">+</option>
                     <option value="-">-</option>
-                    <option value="*">*</option>
-                    <option value="/">/</option>
+                    <option value="*">×</option>
+                    <option value="/">÷</option>
                 </select>
-                <input type="number" name="num2" step="any" required>
+                <input type="number" name="num2" step="any" required placeholder="Número 2">
                 <button type="submit">Calcular</button>
             </form>
 
             {% if resultado %}
                 <div class="resultado">
-                    Resultado: {{ resultado }}
+                    {{ resultado }}
                 </div>
             {% endif %}
 
             {% if erro %}
-                <div class="resultado" style="color: red;">
+                <div class="resultado erro">
                     {{ erro }}
                 </div>
             {% endif %}
@@ -55,7 +197,10 @@
             <div class="historico">
                 <ul>
                     {% for op in historico %}
-                        <li>{{ op.parametros }} = {{ op.resultado }}</li>
+                        <li>
+                            <span>{{ op.parametros }}</span> 
+                            <strong>= {{ op.resultado }}</strong>
+                        </li>
                     {% empty %}
                         <li>Nenhum cálculo realizado ainda.</li>
                     {% endfor %}

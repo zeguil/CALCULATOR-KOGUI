@@ -9,184 +9,82 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #1A1B28;
-            --main-color: #2D2F45;
-            --input-bg: #212333;
-            --btn-purple-bg: #5D3798;
-            --btn-equals-bg: linear-gradient(135deg, #4A40D0, #783597);
-
-            --text-white: #FFFFFF;
-            --text-gray: #B2B2B2;
-            --error-color: #C53F3F;
+            --bg-color: #1A1B28; --main-color: #2D2F45; --input-bg: #212333;
+            --btn-purple-bg: #5D3798; --btn-equals-bg: linear-gradient(135deg, #4A40D0, #783597);
+            --text-white: #FFFFFF; --text-gray: #B2B2B2; --error-color: #C53F3F;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-white);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem;
+            font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-white);
+            display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 2rem;
         }
-
-        .form-container {
-            background-color: var(--main-color);
-            padding: 2.5rem;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 450px;
-        }
-
-        .form-container h1 {
-            text-align: center;
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-gray);
-        }
-
+        .form-container { background-color: var(--main-color); padding: 2.5rem; border-radius: 16px; width: 100%; max-width: 450px; }
+        .form-container h1 { text-align: center; font-size: 1.75rem; font-weight: 600; margin-bottom: 2rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-gray); }
         .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background-color: var(--input-bg);
-            border: 2px solid var(--input-bg);
-            border-radius: 12px;
-            color: var(--text-white);
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            transition: border-color 0.2s ease;
+            width: 100%; padding: 0.8rem 1rem; background-color: var(--input-bg);
+            border: 2px solid var(--input-bg); border-radius: 12px; color: var(--text-white);
+            font-size: 1rem; font-family: 'Inter', sans-serif; transition: border-color 0.2s ease;
         }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--btn-purple-bg);
-        }
-        
-        .help-text {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            margin-top: 0.5rem;
-            line-height: 1.4;
-        }
-
+        .form-control:focus { outline: none; border-color: var(--btn-purple-bg); }
+        .help-text { font-size: 0.8rem; color: var(--text-gray); margin-top: 0.5rem; line-height: 1.4; }
         .error-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0.5rem 0 0 0;
-            color: var(--error-color);
-            font-size: 0.9rem;
-            font-weight: 500;
+            list-style-type: none; padding: 0; margin: 0.5rem 0 0 0;
+            color: var(--error-color); font-size: 0.9rem; font-weight: 500;
         }
-
         .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-white);
-            background-image: var(--btn-equals-bg);
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: filter 0.2s;
-            margin-top: 1rem;
+            width: 100%; padding: 1rem; font-size: 1.1rem; font-weight: 600; color: var(--text-white);
+            background-image: var(--btn-equals-bg); border: none; border-radius: 12px;
+            cursor: pointer; transition: filter 0.2s; margin-top: 1rem;
         }
-
-        .btn-submit:hover {
-            filter: brightness(1.2);
-        }
-
-        .login-link {
-            text-align: center;
-            margin-top: 2rem;
-            color: var(--text-gray);
-        }
-
-        .login-link a {
-            color: var(--text-white);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .login-link a:hover {
-            text-decoration: underline;
-        }
+        .btn-submit:hover { filter: brightness(1.2); }
+        .login-link { text-align: center; margin-top: 2rem; color: var(--text-gray); }
+        .login-link a { color: var(--text-white); text-decoration: none; font-weight: 600; }
+        .login-link a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-
     <div class="form-container">
         <h1>Criar Nova Conta</h1>
-
         <form method="post" novalidate>
             {% csrf_token %}
-
-            {% if form.non_field_errors %}
-                <ul class="error-list" style="margin-bottom: 1rem;">
-                    {% for error in form.non_field_errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
 
             <div class="form-group">
                 {{ form.username.label_tag }}
                 {{ form.username }}
+                {{ form.username.errors }}
                 {% if form.username.help_text %}
                     <div class="help-text">{{ form.username.help_text|safe }}</div>
                 {% endif %}
-                {{ form.username.errors }}
             </div>
 
             <div class="form-group">
-                <label for="id_password">Senha:</label>
-                <input type="password" name="password" id="id_password" class="form-control" required>
-                </div>
+                {{ form.password1.label_tag }}
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+                {% if form.password1.help_text %}
+                    <div class="help-text">{{ form.password1.help_text|safe|linebreaksbr }}</div>
+                {% endif %}
+            </div>
 
             <div class="form-group">
                 {{ form.password2.label_tag }}
                 {{ form.password2 }}
+                {{ form.password2.errors }}
                 {% if form.password2.help_text %}
                     <div class="help-text">{{ form.password2.help_text|safe }}</div>
                 {% endif %}
-                {{ form.password2.errors }}
             </div>
-
 
             <button type="submit" class="btn-submit">Registrar</button>
         </form>
-
         <div class="login-link">
             <p>Já tem uma conta? <a href="{% url 'login' %}">Faça o login</a></p>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('form input').forEach(input => {
-                const type = input.getAttribute('type');
-                if (type === 'text' || type === 'password' || type === 'email' || type === 'number') {
-                    input.classList.add('form-control');
-                }
-            });
-
             document.querySelectorAll('.errorlist').forEach(errorList => {
                 errorList.classList.add('error-list');
                 errorList.classList.remove('errorlist');
