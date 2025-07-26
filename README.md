@@ -68,6 +68,8 @@ A aplicação estará disponível em http://127.0.0.1:8000/.
 ### Endpoints (URLs) da Aplicação
 Acesse as seguintes URLs no seu navegador para interagir com a aplicação:
 
+- http://127.0.0.1:8000/ - Página inicial de apresentação.
+
 - http://127.0.0.1:8000/registrar/ - Página para registrar um novo usuário.
 
 - http://127.0.0.1:8000/login/ - Página para fazer login.
