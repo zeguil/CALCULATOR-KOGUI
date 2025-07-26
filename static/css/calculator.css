@@ -11,7 +11,10 @@
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
-    background-image: radial-gradient(circle at center, #3A2B52 0%, #2D2A37 70%, #22202A 100%);
+    background: 
+        radial-gradient(ellipse at top, rgba(106, 76, 147, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(45, 27, 105, 0.4) 0%, transparent 50%),
+        linear-gradient(135deg, #2D1B69 0%, #6A4C93 50%, #1A0B3D 100%);
     background-color: #2D2A37;
     color: var(--text-color);
     display: flex;
@@ -29,13 +32,14 @@ body {
     color: var(--text-secondary);
     padding: 1rem 2rem;
     text-align: right;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 0px #000000;
 }
 
 .header a {
     color: var(--accent-red);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 900;
 }
 
 .container {
