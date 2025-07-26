@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,129 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #1A1B28;
-            --main-color: #2D2F45;
-            --input-bg: #212333;
-            --btn-purple-bg: #5D3798;
-            --btn-equals-bg: linear-gradient(135deg, #4A40D0, #783597);
-            --text-white: #FFFFFF;
-            --text-gray: #B2B2B2;
-            --error-color: #C53F3F;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-white);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 2rem;
-        }
-
-        .form-container {
-            background-color: var(--main-color);
-            padding: 2.5rem;
-            border-radius: 16px;
-            width: 100%;
-            max-width: 450px;
-        }
-
-        .form-container h1 {
-            text-align: center;
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: var(--text-gray);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            background-color: var(--input-bg);
-            border: 2px solid var(--input-bg);
-            border-radius: 12px;
-            color: var(--text-white);
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            transition: border-color 0.2s ease;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--btn-purple-bg);
-        }
-        
-        .error-list {
-            list-style-type: none;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            background-color: rgba(197, 63, 63, 0.1);
-            border: 1px solid var(--error-color);
-            border-radius: 12px;
-            color: var(--text-white);
-            font-size: 0.9rem;
-            font-weight: 500;
-            text-align: center;
-        }
-        
-        .error-list li {
-           list-style: none;
-           padding: 0;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-white);
-            background-image: var(--btn-equals-bg);
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: filter 0.2s;
-            margin-top: 1rem;
-        }
-
-        .btn-submit:hover {
-            filter: brightness(1.2);
-        }
-
-        .register-link {
-            text-align: center;
-            margin-top: 2rem;
-            color: var(--text-gray);
-        }
-
-        .register-link a {
-            color: var(--text-white);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .register-link a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"> 
 </head>
 <body>
 
@@ -150,13 +30,25 @@
             <div class="form-group">
                 {{ form.username.label_tag }}
                 {{ form.username }}
-                {{ form.username.errors }}
+                {% if form.username.errors %}
+                    <ul class="error-messages">
+                        {% for error in form.username.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
 
             <div class="form-group">
                 {{ form.password.label_tag }}
                 {{ form.password }}
-                {{ form.password.errors }}
+                {% if form.password.errors %}
+                    <ul class="error-messages">
+                        {% for error in form.password.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
             </div>
 
             <button type="submit" class="btn-submit">Entrar</button>
@@ -167,15 +59,6 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('form input').forEach(input => {
-                const type = input.getAttribute('type');
-                if (type === 'text' || type === 'password' || type === 'email' || type === 'number') {
-                    input.classList.add('form-control');
-                }
-            });
-        });
-    </script>
+    <script src="{% static 'js/login.js' %}"></script>
 </body>
 </html>

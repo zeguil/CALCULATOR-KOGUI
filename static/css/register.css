@@ -1,0 +1,105 @@
+:root {
+    --bg-color: #1A1B28;
+    --main-color: #2D2F45;
+    --input-bg: #212333;
+    --btn-purple-bg: #5D3798;
+    --btn-equals-bg: linear-gradient(135deg, #4A40D0, #783597);
+    --text-white: #FFFFFF;
+    --text-gray: #B2B2B2;
+    --error-color: #C53F3F;
+}
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+.form-container {
+    background-color: var(--main-color);
+    padding: 2.5rem;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+}
+.form-container h1 {
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+.form-group {
+    margin-bottom: 1.5rem;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-gray);
+}
+.form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: var(--input-bg);
+    border: 2px solid var(--input-bg);
+    border-radius: 12px;
+    color: var(--text-white);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s ease;
+}
+.form-control:focus {
+    outline: none;
+    border-color: var(--btn-purple-bg);
+}
+.help-text {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+}
+.error-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+    color: var(--error-color);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.btn-submit {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-white);
+    background-image: var(--btn-equals-bg);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: filter 0.2s;
+    margin-top: 1rem;
+}
+.btn-submit:hover {
+    filter: brightness(1.2);
+}
+.login-link {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-gray);
+}
+.login-link a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-weight: 600;
+}
+.login-link a:hover {
+    text-decoration: underline;
+}

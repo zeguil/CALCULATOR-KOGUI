@@ -1,0 +1,223 @@
+:root {
+    --bg-color: #2D2A37;
+    --panel-bg: #1E192F;
+    --input-bg: #282532;
+    --text-color: #E1E1E6;
+    --text-secondary: #A0A0A0;
+    --accent-purple: #8A5DF7;
+    --accent-red: #B83D3D;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-image: radial-gradient(circle at center, #3A2B52 0%, #2D2A37 70%, #22202A 100%);
+    background-color: #2D2A37;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.header {
+    width: 100%;
+    max-width: 800px;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: var(--text-secondary);
+    padding: 1rem 2rem;
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+.header a {
+    color: var(--accent-red);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.container {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+.main-content {
+    background-color: var(--panel-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    flex: 3;
+}
+
+.sidebar {
+    background-color: var(--panel-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.calculator-header h2 {
+    border-bottom: none;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+.calculator-header p {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+h2, h3 {
+    margin-top: 0;
+    border-bottom: 1px solid var(--input-bg);
+    padding-bottom: 0.8rem;
+    font-weight: 500;
+}
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 1.5rem;
+}
+
+.calculator-grid button, .calculator-form input[type="text"] {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid #4A4558;
+    border-radius: 6px;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s, filter 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator-grid button:hover {
+    filter: brightness(1.2);
+}
+
+.calculator-grid button.operator {
+    background-color: var(--accent-purple);
+}
+
+.calculator-grid button.clear {
+    background-color: var(--accent-red);
+}
+
+.calculator-grid button.equals {
+    background-color: var(--accent-purple);
+    grid-column: span 2;
+}
+
+.display {
+    grid-column: span 4;
+    background-color: var(--input-bg);
+    text-align: right;
+    padding: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    min-height: 1em;
+    box-sizing: border-box;
+    word-break: break-all;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.display.error {
+    color: var(--accent-red);
+    font-size: 1.5rem;
+}
+
+.display.has-result {
+    color: var(--accent-purple);
+}
+
+.historico {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.historico ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.historico li {
+    background: var(--input-bg);
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.8rem;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.historico li span {
+    display: block;
+}
+
+.historico li strong {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.historico li small {
+    display: block;
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    margin-top: 0.3rem;
+}
+
+.historico-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--input-bg);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.historico-header h3 {
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
+}
+
+.historico-header .clear-history-btn {
+    background: none;
+    border: none;
+    color: var(--accent-red);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.historico-header .clear-history-btn:hover {
+    color: #ff6b6b;
+}
+
+.historico-header h3 i {
+    margin-right: 0.5rem;
+    color: var(--text-secondary);
+}

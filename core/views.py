@@ -84,7 +84,7 @@ def calculadora(request):
     operacoes_recentes = Operacao.objects.filter(usuario=request.user)[:5]
     contexto['historico'] = operacoes_recentes
     
-    return render(request, 'home/index.html', contexto)
+    return render(request, 'home/calculator.html', contexto)
 
 @login_required
 def delete_latest_history(request):
