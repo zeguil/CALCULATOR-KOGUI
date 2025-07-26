@@ -80,3 +80,6 @@ Acesse as seguintes URLs no seu navegador para interagir com a aplicação:
 
 - http://127.0.0.1:8000/home/ - Página principal com a calculadora e o histórico de operações (requer login).
 
+
+## Créditos
+- Desenvolvido por [José Guilherme Lins](https://github.com/zeguil)
