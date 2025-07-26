@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Calculadora - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <div class="bg-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="logo-section">
+            <h1 class="logo">Portal Calculadora</h1>
+            <p class="subtitle">Sua calculadora inteligente com histórico personalizado</p>
+        </div>
+
+        <div class="hero-section">
+            <p class="hero-description">
+                Uma calculadora moderna que realiza operações matemáticas e mantém um histórico completo 
+                de todos os seus cálculos, organizados por usuário para máxima praticidade.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h3 class="feature-title">Operações Completas</h3>
+                <p class="feature-description">
+                    Soma, subtração, multiplicação e divisão com interface intuitiva.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <h3 class="feature-title">Histórico Inteligente</h3>
+                <p class="feature-description">
+                    Todos os cálculos salvos automaticamente e organizados por data.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3 class="feature-title">Acesso Seguro</h3>
+                <p class="feature-description">
+                    Sistema de login que mantém seus dados seguros e privados.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h3 class="feature-title">Armazenamento Local</h3>
+                <p class="feature-description">
+                    Dados salvos localmente para acesso rápido e privacidade total.
+                </p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <a href="{% url 'login' %}" class="login-btn">
+                <i class="fas fa-sign-in-alt"></i>
+                Fazer Login
+            </a>
+        </div>
+    </div>
+
+    <script src="{% static 'js/home.js' %}"></script>
+</body>
+</html>

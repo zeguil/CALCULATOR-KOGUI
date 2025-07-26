@@ -8,6 +8,9 @@ from .forms import CustomUserCreationForm
 
 import operator
 
+def home(request):
+    return render(request, 'home/home.html')
+
 def registrar_usuario(request):
     """view para registrar um novo usuário."""
     if request.method == 'POST':
@@ -46,14 +49,14 @@ def logout_usuario(request):
 @login_required
 def calculadora(request):
     """view principal da calculadora e do histórico."""
-    contexto = {}
+    context = {}
     
     if request.method == 'POST':
-        num1 = request.POST.get('num1')
-        num2 = request.POST.get('num2')
-        op = request.POST.get('operador')
+        num1_str = request.POST.get('num1')
+        num2_str = request.POST.get('num2')
+        operator_symbol = request.POST.get('operador') # The form still sends 'operador'
 
-        ops = {
+        operations = {
             '+': operator.add,
             '-': operator.sub,
             '*': operator.mul,
@@ -61,33 +64,35 @@ def calculadora(request):
         }
 
         try:
-            num1_float = float(num1)
-            num2_float = float(num2)
+            num1_float = float(num1_str)
+            num2_float = float(num2_str)
             
-            if op == '/' and num2_float == 0:
-                contexto['erro'] = "Erro: Divisão por zero não é permitida."
+            if operator_symbol == '/' and num2_float == 0:
+                context['error'] = "Error: Division by zero is not allowed."
             else:
-                resultado = ops[op](num1_float, num2_float)
-                contexto['resultado'] = resultado
+                result = operations[operator_symbol](num1_float, num2_float)
+                context['result'] = result
                 
+                # Create the Operation record in the database
                 Operacao.objects.create(
                     usuario=request.user,
-                    parametros=f"{num1} {op} {num2}",
-                    resultado=str(resultado)
+                    parametros=f"{num1_str} {operator_symbol} {num2_str}",
+                    resultado=str(result)
                 )
 
         except (ValueError, TypeError):
-            contexto['erro'] = "Erro: Por favor, insira números válidos."
+            context['error'] = "Error: Please enter valid numbers."
         except KeyError:
-            contexto['erro'] = "Erro: Operador inválido."
+            context['error'] = "Error: Invalid operator."
 
-    operacoes_recentes = Operacao.objects.filter(usuario=request.user)[:5]
-    contexto['historico'] = operacoes_recentes
+    # Fetch the 5 most recent operations for the logged-in user
+    recent_operations = Operacao.objects.filter(usuario=request.user)[:5]
+    context['history'] = recent_operations
     
-    return render(request, 'home/calculator.html', contexto)
+    return render(request, 'home/calculator.html', context)
 
 @login_required
-def delete_latest_history(request):
+def delete_latest(request):
     if request.method == 'POST':
         try:
             latest_operation = Operacao.objects.filter(usuario=request.user).order_by('-dt_inclusao').first()
