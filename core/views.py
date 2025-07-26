@@ -2,15 +2,16 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Operacao
-import operator
 
+from .models import Operacao
 from .forms import CustomUserCreationForm
+
+import operator
 
 def registrar_usuario(request):
     """view para registrar um novo usuário."""
     if request.method == 'POST':
-        # Usa o formulário customizado
+
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()

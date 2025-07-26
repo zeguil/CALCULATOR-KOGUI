@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Operacao(models.Model):
     """
-    representa uoperação matemática realizada por um usuário.
+    representa a operação matemática realizada por um usuário.
     """
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     parametros = models.CharField(max_length=100)
