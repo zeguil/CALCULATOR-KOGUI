@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="{% static 'css/calculator.css' %}">
 </head>
 <body>
+    <div class="calculator-header">
+        <h2>Calculadora Avançada</h2>
+        <p>Calculadora com histórico de operações</p>
+    </div>
     <div class="header">
         <span>Olá, {{ user.username|title }}</span> | <a href="{% url 'logout' %}">Sair</a>
     </div>
@@ -21,10 +25,6 @@
     <div class="container">
         <div class="main-content">
             
-            <div class="calculator-header">
-                <h2>Calculadora Avançada</h2>
-                <p>Calculadora com histórico de operações</p>
-            </div>
 
             <div class="calculator-grid">
                 <div class="display" id="display">{% if resultado %}{{ resultado }}{% elif erro %}Erro{% else %}0{% endif %}</div>
