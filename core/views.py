@@ -85,3 +85,16 @@ def calculadora(request):
     contexto['historico'] = operacoes_recentes
     
     return render(request, 'home/index.html', contexto)
+
+@login_required
+def delete_latest_history(request):
+    if request.method == 'POST':
+        try:
+            latest_operation = Operacao.objects.filter(usuario=request.user).order_by('-dt_inclusao').first()
+            if latest_operation:
+                latest_operation.delete()
+
+        except Operacao.DoesNotExist:
+            pass
+        
+    return redirect('calculadora')
