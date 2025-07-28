@@ -1,18 +1,14 @@
-# Ignorar diretórios de cache do Python
 __pycache__/
 
-# Ignorar arquivos .pyc
 *.pyc
 
-# Ignorar ambientes virtuais
 venv/
 .venv/
 
-# Ignorar arquivos específicos do sistema operacional (macOS)
 .DS_Store
 
-# Ignorar arquivos específicos do IDE (VS Code)
 .vscode/
 
-# Ignorar logs e outros arquivos gerados
+
 *.log
+
